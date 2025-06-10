@@ -1,10 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+
+// Debug logging
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
+console.log('Current working directory:', process.cwd());
 
 // Import routes
-const userRoutes = require('./routes/userRoutes');
+// const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -22,7 +27,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 .catch((err) => console.error('MongoDB connection error:', err));
 
 // Routes
-app.use('/api/users', userRoutes);
+// app.use('/api/users', userRoutes);
 
 // Root route
 app.get('/', (req, res) => {
